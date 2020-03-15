@@ -60,67 +60,40 @@ function selectImg() {
   button2.addEventListener("click", showImagesAlbum2);
 }
 
-function showImagesAlbum1() {
+function magnifyDogImage(currentImage) {
+  imgContainer = document.querySelector("#large");
+  imgContainer.innerHTML =
+    '<img src="' +
+    currentImage.url +
+    '" alt="' +
+    currentImage.alt +
+    '" id = "' +
+    currentImage.id +
+    '" > ';
+}
+
+function renderAlbum(wantedAlbumId) {
   removeImages();
-
-  IMAGES = document.querySelector("#images");
-
-  myPicturesArray.forEach(currentImage => {
-    //console.log(currentImage.albumId);
-
-    if (currentImage.albumId === 1) {
-      image = document.createElement("img");
-
-      image.alt = currentImage.title;
-      image.id = currentImage.id;
-      image.src = currentImage.thumbnailUrl;
-      image.url = currentImage.url;
-
-      IMAGES.appendChild(image);
-      //console.log(image);
-    }
-
-    image.addEventListener("click", () => {
-      imgContainer = document.querySelector("#large");
-      imgContainer.innerHTML =
-        ' <img src="' +
-        image.url +
-        '"  alt="' +
-        image.alt +
-        '" id = "' +
-        image.id +
-        '" > ';
-    });
+  const images = myPicturesArray.filter(img => img.albumId === wantedAlbumId);
+  const imagesContainerElement = document.querySelector("#images");
+  images.forEach(currentImage => {
+    let image = document.createElement("img");
+    image.alt = currentImage.title;
+    image.id = currentImage.id;
+    image.src = currentImage.thumbnailUrl;
+    image.url = currentImage.url;
+    image.onclick = () => {
+      magnifyDogImage(currentImage);
+    };
+    imagesContainerElement.appendChild(image);
   });
 }
 
+function showImagesAlbum1() {
+  renderAlbum(1);
+}
 function showImagesAlbum2() {
-  removeImages();
-  IMAGES = document.querySelector("#images");
-
-  myPicturesArray.forEach(function(currentImage) {
-    if (currentImage.albumId === 2) {
-      image = document.createElement("img");
-      image.src = currentImage.thumbnailUrl;
-      image.alt = currentImage.title;
-      image.id = currentImage.id;
-      image.url = currentImage.url;
-      IMAGES.append(image);
-
-      image.addEventListener("click", () => {
-        imgContainer = document.querySelector("#large");
-
-        imgContainer.innerHTML =
-          '<img src="' +
-          image.url +
-          '" alt="' +
-          image.alt +
-          '" id = "' +
-          image.id +
-          '" > ';
-      });
-    }
-  });
+  renderAlbum(2);
 }
 
 function removeImages() {
