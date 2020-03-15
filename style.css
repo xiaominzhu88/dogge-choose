@@ -1,0 +1,62 @@
+img {
+  border-radius: 10px;
+  margin: 15px;
+  box-shadow: 10px 10px 15px rgb(97, 96, 96);
+  cursor: pointer;
+  -webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+
+img:hover {
+  animation-name: light;
+  animation-duration: 1.5s;
+  -webkit-transform: rotate(30deg) scale(0.8);
+  transform:rotate(30deg) scale(0.8);
+}
+
+@keyframes light {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+h1 {
+  color: hotpink;
+  text-align: center;
+  font-family: fantasy;
+  font-weight: bold;
+  text-shadow: 1px 2px 2px gray;
+}
+nav {
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  margin: 10px;
+  background-color: pink;
+  border-radius: 10px;
+  box-shadow: 1px 2px 3px gray;
+  color: #fff;
+  font-size: 1em;
+  font-family: fantasy;
+  padding: 5px;
+  cursor: pointer;
+  outline: none;
+}
+button:hover {
+  background-color: rgb(232, 178, 236);
+}
+button:active {
+  box-shadow: 0 1px 4px rgb(236, 72, 228);
+  transform: translateY(4px);
+  background-color: rgb(115, 115, 214);
+}
